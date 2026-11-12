@@ -1,0 +1,1443 @@
+%%writefile index.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com https://wa.me; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+  <title>Dolce Conforto | Ositos Memories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --beige-light: #F5EFE6;
+      --beige-warm: #E8DDD0;
+      --blue-soft: #A8C3D1;
+      --blue-slate: #5A7D9A;
+      --blue-navy: #1F3A5F;
+      --text-dark: #2C333A;
+      --text-muted: #58626D;
+      --white: #FFFFFF;
+      --whatsapp: #25D366;
+      --whatsapp-dark: #1EBE5D;
+      --shadow-soft: 0 12px 32px rgba(31, 58, 95, 0.08);
+      --shadow-hover: 0 18px 40px rgba(31, 58, 95, 0.14);
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --radius-pill: 50px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--beige-light);
+      color: var(--text-dark);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Playfair Display', serif;
+      color: var(--blue-navy);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ENCABEZADO FIJO */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(245, 239, 230, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(90, 125, 154, 0.18);
+      z-index: 1000;
+      transition: box-shadow 0.3s ease;
+    }
+
+    header.scrolled {
+      box-shadow: 0 4px 20px rgba(31, 58, 95, 0.08);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--beige-warm);
+      border: 1.5px solid var(--blue-soft);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--blue-navy);
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue-slate);
+      font-weight: 500;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+      align-items: center;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--blue-slate);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--blue-navy);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .btn-header-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--blue-navy);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 14px rgba(31, 58, 95, 0.2);
+      white-space: nowrap;
+    }
+
+    .btn-header-wa:hover {
+      background-color: var(--blue-slate);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--blue-navy);
+      padding: 6px;
+    }
+
+    /* SECCIONES GENERALES */
+    section {
+      padding: 90px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 52px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--blue-slate);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* HERO / INICIO */
+    .hero {
+      padding-top: 135px;
+      padding-bottom: 90px;
+      background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-warm) 100%);
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      color: var(--blue-navy);
+      line-height: 1.05;
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      color: var(--blue-slate);
+      margin-bottom: 22px;
+      font-weight: 500;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background-color: rgba(168, 195, 209, 0.35);
+      color: var(--blue-navy);
+      font-size: clamp(1.15rem, 2vw, 1.4rem);
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--blue-soft);
+      margin-bottom: 20px;
+    }
+
+    .hero-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+      color: var(--text-dark);
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      max-width: 540px;
+    }
+
+    .btn-wa-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background-color: var(--whatsapp);
+      color: var(--white);
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.32);
+      transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-wa-hero:hover {
+      background-color: var(--whatsapp-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(37, 211, 102, 0.42);
+    }
+
+    .hero-footnote {
+      margin-top: 22px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--blue-slate);
+      letter-spacing: 0.5px;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image-frame {
+      width: 100%;
+      max-width: 440px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+      border: 8px solid var(--white);
+      background-color: var(--beige-warm);
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* TRABAJOS - CARRUSEL */
+    .works-section {
+      background-color: var(--white);
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 12px 4px 20px;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .work-card {
+      flex: 0 0 calc(25% - 16.5px);
+      scroll-snap-align: start;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background-color: var(--beige-warm);
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      display: block;
+      cursor: pointer;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .work-card img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .work-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background-color: var(--white);
+      border: 1px solid var(--blue-soft);
+      color: var(--blue-navy);
+      box-shadow: 0 6px 18px rgba(31, 58, 95, 0.15);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .carousel-btn:hover {
+      background-color: var(--blue-navy);
+      color: var(--white);
+      transform: translateY(-50%) scale(1.06);
+    }
+
+    .carousel-btn.prev {
+      left: -18px;
+    }
+
+    .carousel-btn.next {
+      right: -18px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--beige-warm);
+      border: 1.5px solid var(--blue-soft);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      width: 28px;
+      border-radius: 10px;
+      background-color: var(--blue-slate);
+      border-color: var(--blue-slate);
+    }
+
+    /* MEDIDAS */
+    .sizes-section {
+      background-color: var(--beige-light);
+    }
+
+    .sizes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .size-card {
+      background-color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(168, 195, 209, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .size-card.featured {
+      border: 2px solid var(--blue-slate);
+      position: relative;
+    }
+
+    .size-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .size-badge {
+      display: inline-block;
+      background-color: var(--beige-warm);
+      color: var(--blue-navy);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+    }
+
+    .size-name {
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+
+    .size-cm {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--blue-slate);
+      margin-bottom: 18px;
+    }
+
+    .size-clothes {
+      background-color: var(--beige-light);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.94rem;
+      color: var(--text-dark);
+      margin-bottom: 22px;
+    }
+
+    .size-clothes strong {
+      display: block;
+      color: var(--blue-navy);
+      margin-bottom: 4px;
+    }
+
+    .size-price-box {
+      border-top: 1px dashed var(--blue-soft);
+      padding-top: 18px;
+    }
+
+    .size-price-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .size-price-placeholder {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue-navy);
+    }
+
+    /* CÓMO FUNCIONA */
+    .steps-section {
+      background-color: var(--beige-warm);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .step-card {
+      background-color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px 22px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      background-color: var(--blue-navy);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-icon {
+      width: 64px;
+      height: 64px;
+      margin: 8px auto 18px;
+      background-color: rgba(168, 195, 209, 0.28);
+      color: var(--blue-navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* TESTIMONIOS */
+    .testimonials-section {
+      background-color: var(--white);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .testimonial-card {
+      background-color: var(--beige-light);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-soft);
+      border-left: 4px solid var(--blue-slate);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      color: var(--text-dark);
+      font-size: 0.98rem;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--blue-navy);
+      font-size: 0.92rem;
+    }
+
+    .testimonial-tag {
+      font-size: 0.8rem;
+      color: var(--blue-slate);
+    }
+
+    /* CONTACTO */
+    .contact-section {
+      background: linear-gradient(180deg, var(--beige-light) 0%, var(--beige-warm) 100%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 44px;
+      align-items: start;
+    }
+
+    .contact-info-card {
+      background-color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-info-card h3 {
+      font-size: 1.75rem;
+      margin-bottom: 14px;
+    }
+
+    .contact-info-card p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.96rem;
+    }
+
+    .phone-display-box {
+      background-color: var(--beige-light);
+      border: 1px solid var(--blue-soft);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-bottom: 22px;
+    }
+
+    .phone-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--blue-slate);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .phone-link {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--blue-navy);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .phone-link:hover {
+      color: var(--blue-slate);
+    }
+
+    .form-card {
+      background-color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--blue-navy);
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--beige-warm);
+      border-radius: var(--radius-md);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      background-color: var(--beige-light);
+      transition: border-color 0.25s ease, background-color 0.25s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--blue-slate);
+      background-color: var(--white);
+    }
+
+    textarea.form-control {
+      min-height: 115px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: var(--whatsapp);
+      color: var(--white);
+      border: none;
+      padding: 15px 24px;
+      border-radius: var(--radius-pill);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.28);
+      transition: background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--whatsapp-dark);
+      transform: translateY(-2px);
+    }
+
+    .privacy-notice {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .form-feedback {
+      margin-top: 12px;
+      font-size: 0.88rem;
+      color: #B42318;
+      text-align: center;
+      min-height: 20px;
+    }
+
+    /* PIE DE PÁGINA */
+    footer {
+      background-color: var(--blue-navy);
+      color: var(--beige-light);
+      text-align: center;
+      padding: 38px 24px;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* BOTÓN FLOTANTE DE WHATSAPP */
+    .floating-wa {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--whatsapp);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.42);
+      z-index: 999;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .floating-wa:hover {
+      background-color: var(--whatsapp-dark);
+      transform: scale(1.08);
+    }
+
+    /* ANIMACIONES SUAVES AL BAJAR */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 1024px) {
+      .work-card {
+        flex: 0 0 calc(33.333% - 14.6px);
+      }
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 24px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-image-wrap {
+        order: -1;
+      }
+      .hero-image-frame {
+        max-width: 340px;
+      }
+      .sizes-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      nav ul {
+        position: fixed;
+        top: 71px;
+        left: 0;
+        width: 100%;
+        background-color: var(--beige-light);
+        flex-direction: column;
+        padding: 24px;
+        gap: 18px;
+        border-bottom: 1px solid var(--blue-soft);
+        box-shadow: 0 10px 25px rgba(31, 58, 95, 0.1);
+        display: none;
+      }
+      nav ul.open {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .btn-header-wa span {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .work-card {
+        flex: 0 0 78%;
+      }
+      .carousel-btn {
+        display: none;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      section {
+        padding: 68px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO FIJO -->
+  <header id="mainHeader">
+    <div class="nav-container">
+      <a href="#inicio" class="brand" aria-label="Dolce Conforto Inicio">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="6" r="2.5"/>
+            <circle cx="17" cy="6" r="2.5"/>
+            <circle cx="12" cy="13" r="7"/>
+            <circle cx="9.8" cy="11.5" r="0.8" fill="#1F3A5F"/>
+            <circle cx="14.2" cy="11.5" r="0.8" fill="#1F3A5F"/>
+            <ellipse cx="12" cy="14.5" rx="2.2" ry="1.6"/>
+            <path d="M12 13.8v1.2"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Dolce Conforto</span>
+          <span class="brand-sub">Ositos Memories</span>
+        </div>
+      </a>
+
+      <nav aria-label="Navegación principal">
+        <ul id="navMenu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#trabajos">Trabajos</a></li>
+          <li><a href="#medidas">Medidas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div style="display:flex; align-items:center; gap:10px;">
+        <a href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20quiero%20informaci%C3%B3n%20para%20pedir%20un%20osito"
+           target="_blank" rel="noopener noreferrer" class="btn-header-wa" aria-label="Contactar por WhatsApp al +52 311 344 1442">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.473 1.332 4.986L2 22l5.184-1.359a9.927 9.927 0 0 0 4.847 1.258h.004c5.515 0 9.969-4.454 9.969-9.969A9.936 9.936 0 0 0 19.08 4.92 9.904 9.904 0 0 0 12.031 2zm5.822 14.132c-.246.693-1.428 1.326-1.979 1.408-.506.076-1.146.108-1.85-.116-.428-.136-.977-.318-1.679-.621-2.953-1.275-4.881-4.248-5.029-4.445-.148-.197-1.201-1.598-1.201-3.049 0-1.451.761-2.164 1.031-2.459.27-.295.59-.369.787-.369.197 0 .394.002.566.01.181.009.424-.069.664.506.246.591.836 2.041.91 2.189.074.148.123.32.025.517-.098.197-.148.32-.295.492-.148.172-.31.384-.443.516-.148.148-.302.308-.13.603.172.295.764 1.261 1.641 2.042 1.127 1.005 2.078 1.316 2.373 1.464.295.148.467.123.64-.074.172-.197.738-.861.935-1.156.197-.295.394-.246.664-.148.27.098 1.721.812 2.016.959.295.148.492.222.566.345.074.123.074.713-.172 1.406z"/>
+          </svg>
+          <span>+52 311 344 1442</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. INICIO / HERO -->
+  <section id="inicio" class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <h1 class="hero-title">Dolce Conforto</h1>
+        <p class="hero-subtitle">Ositos Memories</p>
+        <div class="hero-badge">Ositos 100% personalizados</div>
+        <h2 class="hero-quote">“Un abrazo que guarda un recuerdo para siempre”</h2>
+        <p class="hero-desc">Con amor y cuidado, transformamos prendas en un recuerdo para siempre.</p>
+
+        <a href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20quiero%20informaci%C3%B3n%20para%20pedir%20un%20osito%20con%20una%20prenda%20especial"
+           target="_blank" rel="noopener noreferrer" class="btn-wa-hero">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.473 1.332 4.986L2 22l5.184-1.359a9.927 9.927 0 0 0 4.847 1.258h.004c5.515 0 9.969-4.454 9.969-9.969A9.936 9.936 0 0 0 19.08 4.92 9.904 9.904 0 0 0 12.031 2zm5.822 14.132c-.246.693-1.428 1.326-1.979 1.408-.506.076-1.146.108-1.85-.116-.428-.136-.977-.318-1.679-.621-2.953-1.275-4.881-4.248-5.029-4.445-.148-.197-1.201-1.598-1.201-3.049 0-1.451.761-2.164 1.031-2.459.27-.295.59-.369.787-.369.197 0 .394.002.566.01.181.009.424-.069.664.506.246.591.836 2.041.91 2.189.074.148.123.32.025.517-.098.197-.148.32-.295.492-.148.172-.31.384-.443.516-.148.148-.302.308-.13.603.172.295.764 1.261 1.641 2.042 1.127 1.005 2.078 1.316 2.373 1.464.295.148.467.123.64-.074.172-.197.738-.861.935-1.156.197-.295.394-.246.664-.148.27.098 1.721.812 2.016.959.295.148.492.222.566.345.074.123.074.713-.172 1.406z"/>
+          </svg>
+          Escribir por WhatsApp
+        </a>
+
+        <p class="hero-footnote">Piezas únicas • Hecho en Nayarit</p>
+      </div>
+
+      <div class="hero-image-wrap reveal">
+        <div class="hero-image-frame">
+          <!-- Foto 3 -->
+          <img src="WhatsApp Image 2026-11-11 at 18.20.37 (4).jpeg" alt="Dolce Conforto Osito Memories personalizado">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. TRABAJOS - CARRUSEL -->
+  <section id="trabajos" class="works-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Galería artesanal</span>
+        <h2 class="section-title">Algunos de nuestros trabajos</h2>
+        <p class="section-subtitle">Algunas referencias de trabajos ya realizados</p>
+      </div>
+
+      <div class="carousel-wrapper reveal">
+        <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Foto 1 -->
+          <a class="work-card" href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20vi%20este%20trabajo%20de%20referencia%20y%20quiero%20un%20osito%20parecido%20con%20mi%20ropa%2C%20%C2%BFme%20das%20informaci%C3%B3n%20de%20medidas%20y%20precios%3F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre esta referencia">
+            <img src="WhatsApp Image 2026-11-11 at 18.20.37.jpeg" alt="Trabajo de referencia Dolce Conforto 1" loading="lazy">
+          </a>
+          <!-- Foto 2 -->
+          <a class="work-card" href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20vi%20este%20trabajo%20de%20referencia%20y%20quiero%20un%20osito%20parecido%20con%20mi%20ropa%2C%20%C2%BFme%20das%20informaci%C3%B3n%20de%20medidas%20y%20precios%3F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre esta referencia">
+            <img src="WhatsApp Image 2026-11-11 at 18.20.37 (1).jpeg" alt="Trabajo de referencia Dolce Conforto 2" loading="lazy">
+          </a>
+          <!-- Foto 3 -->
+          <a class="work-card" href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20vi%20este%20trabajo%20de%20referencia%20y%20quiero%20un%20osito%20parecido%20con%20mi%20ropa%2C%20%C2%BFme%20das%20informaci%C3%B3n%20de%20medidas%20y%20precios%3F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre esta referencia">
+            <img src="WhatsApp Image 2026-11-11 at 18.20.37 (4).jpeg" alt="Trabajo de referencia Dolce Conforto 3" loading="lazy">
+          </a>
+          <!-- Foto 4 -->
+          <a class="work-card" href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20vi%20este%20trabajo%20de%20referencia%20y%20quiero%20un%20osito%20parecido%20con%20mi%20ropa%2C%20%C2%BFme%20das%20informaci%C3%B3n%20de%20medidas%20y%20precios%3F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre esta referencia">
+            <img src="WhatsApp Image 2026-11-11 at 18.20.37 (5).jpeg" alt="Trabajo de referencia Dolce Conforto 4" loading="lazy">
+          </a>
+          <!-- Foto 5 -->
+          <a class="work-card" href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20vi%20este%20trabajo%20de%20referencia%20y%20quiero%20un%20osito%20parecido%20con%20mi%20ropa%2C%20%C2%BFme%20das%20informaci%C3%B3n%20de%20medidas%20y%20precios%3F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre esta referencia">
+            <img src="WhatsApp Image 2026-11-11 at 18.20.37 (6).jpeg" alt="Trabajo de referencia Dolce Conforto 5" loading="lazy">
+          </a>
+          <!-- Foto 6 -->
+          <a class="work-card" href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20vi%20este%20trabajo%20de%20referencia%20y%20quiero%20un%20osito%20parecido%20con%20mi%20ropa%2C%20%C2%BFme%20das%20informaci%C3%B3n%20de%20medidas%20y%20precios%3F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre esta referencia">
+            <img src="WhatsApp Image 2026-11-11 at 18.20.37 (7).jpeg" alt="Trabajo de referencia Dolce Conforto 6" loading="lazy">
+          </a>
+          <!-- Foto 7 -->
+          <a class="work-card" href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20vi%20este%20trabajo%20de%20referencia%20y%20quiero%20un%20osito%20parecido%20con%20mi%20ropa%2C%20%C2%BFme%20das%20informaci%C3%B3n%20de%20medidas%20y%20precios%3F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre esta referencia">
+            <img src="WhatsApp Image 2026-11-11 at 18.20.37 (3).jpeg" alt="Trabajo de referencia Dolce Conforto 7" loading="lazy">
+          </a>
+          <!-- Foto 8 -->
+          <a class="work-card" href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20vi%20este%20trabajo%20de%20referencia%20y%20quiero%20un%20osito%20parecido%20con%20mi%20ropa%2C%20%C2%BFme%20das%20informaci%C3%B3n%20de%20medidas%20y%20precios%3F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre esta referencia">
+            <img src="WhatsApp Image 2026-11-11 at 18.20.37 (2).jpeg" alt="Trabajo de referencia Dolce Conforto 8" loading="lazy">
+          </a>
+        </div>
+
+        <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+
+        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Indicadores de galería"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MEDIDAS -->
+  <section id="medidas" class="sizes-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Tamaños disponibles</span>
+        <h2 class="section-title">Medidas</h2>
+        <p class="section-subtitle">Cada osito se elabora a mano con tus prendas especiales. Ninguno es igual a otro.</p>
+      </div>
+
+      <div class="sizes-grid">
+        <!-- Pequeño -->
+        <div class="size-card reveal">
+          <div>
+            <span class="size-badge">Ideal para recuerdo de escritorio o cuna</span>
+            <h3 class="size-name">Pequeño</h3>
+            <div class="size-cm">30 cm</div>
+            <div class="size-clothes">
+              <strong>Prendas necesarias:</strong>
+              1 a 2 prendas de adulto (camisa o playera) o 3 a 4 prendas de bebé.
+            </div>
+          </div>
+          <div class="size-price-box">
+            <span class="size-price-label">Inversión</span>
+            <div class="size-price-placeholder">$ — MXN</div>
+          </div>
+        </div>
+
+        <!-- Mediano -->
+        <div class="size-card featured reveal">
+          <div>
+            <span class="size-badge">El tamaño favorito para abrazar</span>
+            <h3 class="size-name">Mediano</h3>
+            <div class="size-cm">40 cm</div>
+            <div class="size-clothes">
+              <strong>Prendas necesarias:</strong>
+              2 a 3 prendas de adulto o 5 a 6 prendas de bebé.
+            </div>
+          </div>
+          <div class="size-price-box">
+            <span class="size-price-label">Inversión</span>
+            <div class="size-price-placeholder">$ — MXN</div>
+          </div>
+        </div>
+
+        <!-- Grande -->
+        <div class="size-card reveal">
+          <div>
+            <span class="size-badge">Presencia especial y gran abrazo</span>
+            <h3 class="size-name">Grande</h3>
+            <div class="size-cm">50 cm</div>
+            <div class="size-clothes">
+              <strong>Prendas necesarias:</strong>
+              3 a 4 prendas de adulto o 7 a 8 prendas de bebé.
+            </div>
+          </div>
+          <div class="size-price-box">
+            <span class="size-price-label">Inversión</span>
+            <div class="size-price-placeholder">$ — MXN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CÓMO FUNCIONA -->
+  <section class="steps-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Proceso artesanal</span>
+        <h2 class="section-title">Cómo funciona</h2>
+        <p class="section-subtitle">Cuidamos cada prenda desde que llega a nuestras manos hasta que regresa convertida en abrazo.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <h3 class="step-title">1. Envías la ropa</h3>
+          <p class="step-desc">Coordinamos por WhatsApp la entrega o envío seguro de las prendas especiales.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">2</div>
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </div>
+          <h3 class="step-title">2. Eliges medida y nos cuentas qué referencia te gustó</h3>
+          <p class="step-desc">Definimos el tamaño ideal y los detalles personalizados de acuerdo con tus telas.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">3</div>
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="step-title">3. Lo creamos a mano</h3>
+          <p class="step-desc">Cortamos, armamos y cosemos cada pieza artesanalmente respetando botones y detalles originales.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">4</div>
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3 class="step-title">4. Lo recibes en casa</h3>
+          <p class="step-desc">Recibes tu osito terminado, listo para acompañarte y conservar esa memoria viva.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. TESTIMONIOS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Historias reales</span>
+        <h2 class="section-title">Palabras que abrazan</h2>
+        <p class="section-subtitle">Lo que sienten las familias al recibir su recuerdo.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <p class="testimonial-quote">“Cuando abrí la caja y vi la camisa favorita de mi papá convertida en un osito, sentí que volvía a abrazarlo. Cada costura tiene un respeto enorme.”</p>
+          <div>
+            <div class="testimonial-author">Mariana G.</div>
+            <div class="testimonial-tag">Osito recuerdo familiar</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <p class="testimonial-quote">“Tenía guardados los mamelucos de recién nacido de mi hijo y no quería que se quedaran en una caja. Ahora decora su cuarto y lo abraza todas las noches.”</p>
+          <div>
+            <div class="testimonial-author">Fernanda R.</div>
+            <div class="testimonial-tag">Osito ropa de bebé</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <p class="testimonial-quote">“Mandamos hacer dos ositos con las camisas a cuadros de mi abuelo para mi mamá y mi tía. Lloramos de emoción al ver los detalles y el moño tan elegante.”</p>
+          <div>
+            <div class="testimonial-author">Carlos M.</div>
+            <div class="testimonial-tag">Pareja de ositos conmemorativos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CONTACTO -->
+  <section id="contacto" class="contact-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Atención personalizada</span>
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-subtitle">Cuéntanos qué prenda deseas transformar y te asesoramos personalmente por WhatsApp.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card reveal">
+          <h3>Hablemos de tu recuerdo</h3>
+          <p>Cada osito se diseña desde cero con la ropa que nos confías. Escríbenos directamente para resolver tus dudas sobre prendas, tiempos de entrega y envíos.</p>
+
+          <div class="phone-display-box">
+            <span class="phone-label">WhatsApp directo</span>
+            <a href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20quiero%20informaci%C3%B3n%20para%20pedir%20un%20osito"
+               target="_blank" rel="noopener noreferrer" class="phone-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
+                <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.473 1.332 4.986L2 22l5.184-1.359a9.927 9.927 0 0 0 4.847 1.258h.004c5.515 0 9.969-4.454 9.969-9.969A9.936 9.936 0 0 0 19.08 4.92 9.904 9.904 0 0 0 12.031 2zm5.822 14.132c-.246.693-1.428 1.326-1.979 1.408-.506.076-1.146.108-1.85-.116-.428-.136-.977-.318-1.679-.621-2.953-1.275-4.881-4.248-5.029-4.445-.148-.197-1.201-1.598-1.201-3.049 0-1.451.761-2.164 1.031-2.459.27-.295.59-.369.787-.369.197 0 .394.002.566.01.181.009.424-.069.664.506.246.591.836 2.041.91 2.189.074.148.123.32.025.517-.098.197-.148.32-.295.492-.148.172-.31.384-.443.516-.148.148-.302.308-.13.603.172.295.764 1.261 1.641 2.042 1.127 1.005 2.078 1.316 2.373 1.464.295.148.467.123.64-.074.172-.197.738-.861.935-1.156.197-.295.394-.246.664-.148.27.098 1.721.812 2.016.959.295.148.492.222.566.345.074.123.074.713-.172 1.406z"/>
+              </svg>
+              +52 311 344 1442
+            </a>
+          </div>
+
+          <p style="margin-bottom:0; font-size:0.9rem;">Piezas únicas • Hecho en Nayarit</p>
+        </div>
+
+        <div class="form-card reveal">
+          <form id="orderForm" novalidate>
+            <div class="form-group">
+              <label for="clientName">Tu nombre *</label>
+              <input type="text" id="clientName" name="clientName" class="form-control" maxlength="80" placeholder="Escribe tu nombre" required>
+            </div>
+
+            <div class="form-group">
+              <label for="bearSize">Medida deseada *</label>
+              <select id="bearSize" name="bearSize" class="form-control" required>
+                <option value="Pequeño (30 cm)">Pequeño - 30 cm</option>
+                <option value="Mediano (40 cm)" selected>Mediano - 40 cm</option>
+                <option value="Grande (50 cm)">Grande - 50 cm</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="clientMessage">Mensaje (cuéntanos sobre tu prenda o qué trabajo de referencia te gustó) *</label>
+              <textarea id="clientMessage" name="clientMessage" class="form-control" maxlength="500" placeholder="Ej. Hola, quiero un osito con una camisa especial y me gustó uno de los trabajos de referencia de su galería..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.473 1.332 4.986L2 22l5.184-1.359a9.927 9.927 0 0 0 4.847 1.258h.004c5.515 0 9.969-4.454 9.969-9.969A9.936 9.936 0 0 0 19.08 4.92 9.904 9.904 0 0 0 12.031 2zm5.822 14.132c-.246.693-1.428 1.326-1.979 1.408-.506.076-1.146.108-1.85-.116-.428-.136-.977-.318-1.679-.621-2.953-1.275-4.881-4.248-5.029-4.445-.148-.197-1.201-1.598-1.201-3.049 0-1.451.761-2.164 1.031-2.459.27-.295.59-.369.787-.369.197 0 .394.002.566.01.181.009.424-.069.664.506.246.591.836 2.041.91 2.189.074.148.123.32.025.517-.098.197-.148.32-.295.492-.148.172-.31.384-.443.516-.148.148-.302.308-.13.603.172.295.764 1.261 1.641 2.042 1.127 1.005 2.078 1.316 2.373 1.464.295.148.467.123.64-.074.172-.197.738-.861.935-1.156.197-.295.394-.246.664-.148.27.098 1.721.812 2.016.959.295.148.492.222.566.345.074.123.074.713-.172 1.406z"/>
+              </svg>
+              Continuar en WhatsApp
+            </button>
+
+            <div class="form-feedback" id="formFeedback" role="alert"></div>
+
+            <p class="privacy-notice">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Tus datos solo se comparten por WhatsApp para atender tu pedido, no se guardan en esta página
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. PIE DE PÁGINA -->
+  <footer>
+    <p>Dolce Conforto • Ositos Memories • Ositos 100% personalizados • Hecho con amor para honrar memorias</p>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <a href="https://wa.me/523113441442?text=Hola%20Dolce%20Conforto%2C%20quiero%20informaci%C3%B3n%20para%20pedir%20un%20osito"
+     target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="Escribir por WhatsApp a Dolce Conforto">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.473 1.332 4.986L2 22l5.184-1.359a9.927 9.927 0 0 0 4.847 1.258h.004c5.515 0 9.969-4.454 9.969-9.969A9.936 9.936 0 0 0 19.08 4.92 9.904 9.904 0 0 0 12.031 2zm5.822 14.132c-.246.693-1.428 1.326-1.979 1.408-.506.076-1.146.108-1.85-.116-.428-.136-.977-.318-1.679-.621-2.953-1.275-4.881-4.248-5.029-4.445-.148-.197-1.201-1.598-1.201-3.049 0-1.451.761-2.164 1.031-2.459.27-.295.59-.369.787-.369.197 0 .394.002.566.01.181.009.424-.069.664.506.246.591.836 2.041.91 2.189.074.148.123.32.025.517-.098.197-.148.32-.295.492-.148.172-.31.384-.443.516-.148.148-.302.308-.13.603.172.295.764 1.261 1.641 2.042 1.127 1.005 2.078 1.316 2.373 1.464.295.148.467.123.64-.074.172-.197.738-.861.935-1.156.197-.295.394-.246.664-.148.27.098 1.721.812 2.016.959.295.148.492.222.566.345.074.123.074.713-.172 1.406z"/>
+    </svg>
+  </a>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Menú responsivo
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
+      const header = document.getElementById('mainHeader');
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function () {
+          navMenu.classList.toggle('open');
+        });
+        navMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            navMenu.classList.remove('open');
+          });
+        });
+      }
+
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 20) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }, { passive: true });
+
+      // Animaciones al bajar
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        revealEls.forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        revealEls.forEach(function (el) {
+          el.classList.add('visible');
+        });
+      }
+
+      // Carrusel horizontal con puntitos y flechas
+      const track = document.getElementById('carouselTrack');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsContainer = document.getElementById('carouselDots');
+      const cards = track ? Array.from(track.querySelectorAll('.work-card')) : [];
+
+      if (track && dotsContainer && cards.length > 0) {
+        cards.forEach(function (_, index) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Ir a foto ' + (index + 1));
+          dot.addEventListener('click', function () {
+            const cardWidth = cards[0].offsetWidth + 22;
+            track.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+          });
+          dotsContainer.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
+
+        function updateDots() {
+          const cardWidth = cards[0].offsetWidth + 22;
+          const activeIndex = Math.min(
+            cards.length - 1,
+            Math.max(0, Math.round(track.scrollLeft / cardWidth))
+          );
+          dots.forEach(function (dot, idx) {
+            dot.classList.toggle('active', idx === activeIndex);
+          });
+        }
+
+        track.addEventListener('scroll', updateDots, { passive: true });
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            const cardWidth = cards[0].offsetWidth + 22;
+            track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            const cardWidth = cards[0].offsetWidth + 22;
+            track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+          });
+        }
+      }
+
+      // Sanitización y envío seguro a WhatsApp
+      function sanitizeInput(str, maxLen) {
+        if (typeof str !== 'string') return '';
+        return str
+          .replace(/[\u0000-\u001F\u007F<>]/g, '')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .slice(0, maxLen);
+      }
+
+      const ALLOWED_SIZES = ['Pequeño (30 cm)', 'Mediano (40 cm)', 'Grande (50 cm)'];
+      const orderForm = document.getElementById('orderForm');
+      const feedback = document.getElementById('formFeedback');
+
+      if (orderForm) {
+        orderForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          feedback.textContent = '';
+
+          const rawName = document.getElementById('clientName').value;
+          const rawSize = document.getElementById('bearSize').value;
+          const rawMsg = document.getElementById('clientMessage').value;
+
+          const cleanName = sanitizeInput(rawName, 80);
+          const cleanSize = ALLOWED_SIZES.includes(rawSize) ? rawSize : 'Mediano (40 cm)';
+          const cleanMsg = sanitizeInput(rawMsg, 500);
+
+          if (cleanName.length < 2) {
+            feedback.textContent = 'Por favor escribe tu nombre.';
+            return;
+          }
+          if (cleanMsg.length < 5) {
+            feedback.textContent = 'Por favor escribe un mensaje breve sobre tu pedido.';
+            return;
+          }
+
+          const whatsappText =
+            'Hola Dolce Conforto, me gustaría pedir información para un osito personalizado.\n' +
+            '• Nombre: ' + cleanName + '\n' +
+            '• Medida: ' + cleanSize + '\n' +
+            '• Mensaje: ' + cleanMsg;
+
+          const waUrl = 'https://wa.me/523113441442?text=' + encodeURIComponent(whatsappText);
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
